@@ -2,8 +2,10 @@ source("Deck.R")
 source("util.R")
 source("process.R")
 
+####### Set number of players to any number #######
 num_players <- 3
 
+####### Initialize #######
 shuffled_deck <- sample(1:52, 52)
 
 index <- 1
@@ -16,6 +18,7 @@ for(i in 1:num_players) {
   players[[i]] <- vector()
 }
 
+###### deal #########
 for(i in 1:num_players) {
   players[[i]][1] <- deck[shuffled_deck[index]]
   index <- index + 1
