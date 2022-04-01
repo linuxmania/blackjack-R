@@ -2,13 +2,13 @@ source("Deck.R")
 source("util.R")
 source("process.R")
 
+num_players <- 3
+
 shuffled_deck <- sample(1:52, 52)
 
 index <- 1
 
 d <- vector()
-
-num_players <- 2
 
 players <- vector(mode='list', length=num_players)
 
