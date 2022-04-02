@@ -5,6 +5,9 @@ process_dealer <- function(dealer, idx){
   show_cards(dealer)
   
   value_d <- get_val(dealer)
+  if(value_d == 22){
+    dealer[[1]]@value <- 1
+  }
   
   d_num <- 2
   # add card if appropriate
@@ -36,19 +39,20 @@ process_dealer <- function(dealer, idx){
 }
 
 
-process_player <- function(p,num, idx, dlr){
-  cat("process_player\n")
-  
+process_player <- function(p,num, idx, dlr_crd){
   num_cards <- 2
-  
+  if(get_val(p) == 22){
+    p[[1]]@value <- 1
+  }
+
   repeat{
     value_p <- get_val(p)
-    cat("Dealer showing:\n")
-    cat(dlr[[1]]@name,"of",dlr[[1]]@suit,"\n")
+    cat("\nDealer showing:\n")
+    cat(dlr_crd@name,"of",dlr_crd@suit,"\n\n")
     cat("Player",num, ":\n")
     show_cards(p)
     
-    cat("Player",num,":",value_p,"\n")
+    cat("Player",num,":",value_p,"\n\n")
     if(value_p == 21) break
     
     hit_card <- get_card(next_card(idx))
@@ -64,7 +68,10 @@ process_player <- function(p,num, idx, dlr){
     
     if(value_p > 21){
       reducable <- can_reduce(p)  
-      if(reducable == FALSE) break
+      if(reducable == FALSE) {
+        cat("Player",num,"Busted\n\n")
+        break
+      }  
       for(i in 1:length(p)) {
         if(p[[i]]@value == 11){
           p[[i]]@value <- 1

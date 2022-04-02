@@ -35,10 +35,8 @@ index <- index + 1
 
 ####### process hands ############
 for(i in 1:num_players) {
-  players[[i]] <- process_player(players[[i]],i, index, d)
+  players[[i]] <- process_player(players[[i]],i, index, d[[1]])
   index <- (index + length(players[[i]]) -2)
-  cat("index", index, "\n")
-  cat("\n")
 }
 
 d <- process_dealer(d, index)
@@ -52,13 +50,13 @@ for(i in 1:num_players) {
   player_values[i] <- get_val(players[[i]])
 }
 
-cat("\n\nResults:\n\n")
+cat("\nResults:\n")
 
-cat("\n\nDealer:", value_d, "\n\n")
+cat("\nDealer:", value_d, "\n\n")
 show_cards(d)
 
 for(i in 1:num_players) {
-  cat("\n\nPlayer",i, ":",player_values[i], "\n\n")
+  cat("\nPlayer",i, ":",player_values[i], "\n\n")
   show_cards(players[[i]])
 }
 
