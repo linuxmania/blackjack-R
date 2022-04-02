@@ -64,10 +64,6 @@ deck <-c(card1,card2,card3,card4,card5,card6,card7,card8,card9,card10,card11,car
 
 shuffled_deck <- sample(1:52, 52)
 
-# next_card <- function(index){
-#   return(deck[shuffled_deck[index]])
-# }
-
 next_card <- function(index){
   n_card <- deck[shuffled_deck[index]]
   return(n_card)
