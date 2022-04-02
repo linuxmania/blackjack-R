@@ -1,4 +1,3 @@
-source("Deck.R")
 source("util.R")
 source("process.R")
 
@@ -6,8 +5,6 @@ source("process.R")
 num_players <- 3
 
 ####### Initialize #######
-shuffled_deck <- sample(1:52, 52)
-
 index <- 1
 
 d <- vector()
@@ -20,30 +17,31 @@ for(i in 1:num_players) {
 
 ###### deal #########
 for(i in 1:num_players) {
-  players[[i]][1] <- deck[shuffled_deck[index]]
+  players[[i]][1] <- next_card(index)
   index <- index + 1
 }
 
-d[1] = deck[shuffled_deck[index]]
+d[1] = next_card(index)
 index <- index + 1
 
 for(i in 1:num_players) {
-  players[[i]][2] <- deck[shuffled_deck[index]]
+  players[[i]][2] <- next_card(index)
   index <- index + 1
 }
 
-d[2] <- deck[shuffled_deck[index]]
+d[2] <- next_card(index)
+index <- index + 1
 
 
 ####### process hands ############
 for(i in 1:num_players) {
-  players[[i]] <- process_player(players[[i]],i, index, d, deck, shuffled_deck)
+  players[[i]] <- process_player(players[[i]],i, index, d)
   index <- (index + length(players[[i]]) -2)
   cat("index", index, "\n")
   cat("\n")
 }
 
-d <- process_dealer(d, index, deck, shuffled_deck)
+d <- process_dealer(d, index)
 
 
 ####### results #############

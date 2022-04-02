@@ -1,4 +1,6 @@
-process_dealer <- function(dealer, idx, dck, shffld_dck){
+source("Deck.R")
+
+process_dealer <- function(dealer, idx){
   cat("process_dealer\n")
   show_cards(dealer)
   
@@ -8,9 +10,9 @@ process_dealer <- function(dealer, idx, dck, shffld_dck){
   # add card if appropriate
   repeat{
     if(value_d < 17){
-      idx <- idx + 1
       d_num <- d_num +1
-      dealer[d_num] <- dck[shffld_dck[idx]]
+      dealer[d_num] <- next_card(idx)
+      idx <- idx + 1
       
       value_d <- get_val(dealer)
       
@@ -34,7 +36,7 @@ process_dealer <- function(dealer, idx, dck, shffld_dck){
 }
 
 
-process_player <- function(p,num, idx, dlr, dck, shffld_dck){
+process_player <- function(p,num, idx, dlr){
   cat("process_player\n")
   
   num_cards <- 2
@@ -49,12 +51,12 @@ process_player <- function(p,num, idx, dlr, dck, shffld_dck){
     cat("Player",num,":",value_p,"\n")
     if(value_p == 21) break
     
-    next_card <- get_card(dck[shffld_dck[idx+1]])
-    if(is.null(next_card)) break
+    hit_card <- get_card(next_card(idx))
+    if(is.null(hit_card)) break
     
     idx <- idx + 1
-    num_cards <- num_cards +1
-    p[num_cards] <- next_card
+    num_cards <- num_cards + 1
+    p[num_cards] <- hit_card
     cat(p[[num_cards]]@name,"of",p[[num_cards]]@suit,"\n")
     
     value_p <- get_val(p)
