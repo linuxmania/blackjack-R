@@ -6,7 +6,6 @@ num_players <- 3
 
 ####### Initialize #######
 index <- 1
-
 d <- vector()
 
 players <- vector(mode='list', length=num_players)
