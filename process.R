@@ -10,7 +10,7 @@ process_dealer <- function(dealer, idx, dck, shffld_dck){
     if(value_d < 17){
       idx <- idx + 1
       d_num <- d_num +1
-      dealer[d_num] = dck[shffld_dck[idx]]
+      dealer[d_num] <- dck[shffld_dck[idx]]
       
       value_d <- get_val(dealer)
       

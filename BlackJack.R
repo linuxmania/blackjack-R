@@ -34,6 +34,8 @@ for(i in 1:num_players) {
 
 d[2] <- deck[shuffled_deck[index]]
 
+
+####### process hands ############
 for(i in 1:num_players) {
   players[[i]] <- process_player(players[[i]],i, index, d, deck, shuffled_deck)
   index <- (index + length(players[[i]]) -2)
@@ -43,6 +45,8 @@ for(i in 1:num_players) {
 
 d <- process_dealer(d, index, deck, shuffled_deck)
 
+
+####### results #############
 value_d <- get_val(d)
 
 player_values <- vector()
